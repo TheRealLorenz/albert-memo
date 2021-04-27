@@ -28,7 +28,7 @@ def handleQuery(query):
                                         )])
 
     results = []
-    with open('/home/lollo/.local/share/albert/org.albert.extension.python/modules/memo/memo.txt', 'a+') as memfile:
+    with open('/home/%s/.local/share/albert/org.albert.extension.python/modules/memo/memo.txt' % getuser(), 'a+') as memfile:
         memfile.seek(0)
         for line in memfile:
             text = line.split('|')[1].strip()
