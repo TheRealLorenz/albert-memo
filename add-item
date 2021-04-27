@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ x"$1" != x"" ]; then
+    echo "$(date | cut -d " " -f2- | cut -d "," -f1)|$(echo $@ | cut -d "+" -f2)" >> ./memo.txt
+fi

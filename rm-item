@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ x"$1" != x"" ]; then
+    sed -i "/$1/d" ~/.local/share/albert/org.albert.extension.python/modules/memo/memo.txt
+fi
