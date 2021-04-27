@@ -23,12 +23,12 @@ def handleQuery(query):
                     text="%s" % query.string.split('+')[1].strip(),
                     subtext="Add item to memo",
                     actions=[ProcAction(text='Add entry',
-                                        commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/memo/add-item' % getuser(), '%s' % query.string.split('+')[1].strip()],
-                                        cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/memo/' % getuser()
+                                        commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/add-item' % getuser(), '%s' % query.string.split('+')[1].strip()],
+                                        cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/' % getuser()
                                         )])
 
     results = []
-    with open('/home/%s/.local/share/albert/org.albert.extension.python/modules/memo/memo.txt' % getuser(), 'a+') as memfile:
+    with open('/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/memo.txt' % getuser(), 'a+') as memfile:
         memfile.seek(0)
         for line in memfile:
             text = line.split('|')[1].strip()
@@ -39,8 +39,8 @@ def handleQuery(query):
                 subtext=date
                 )
             item.actions = [ProcAction(text='Remove entry',
-                                        commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/memo/rm-item' % getuser(), text],
-                                        cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/memo/' % getuser()
+                                        commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/rm-item' % getuser(), text],
+                                        cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/' % getuser()
                                         )]
             results.append(item)
 
