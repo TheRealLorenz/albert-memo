@@ -7,7 +7,7 @@ from getpass import getuser
 
 
 __title__ = "Memo"
-__version__ = "0.0.1"
+__version__ = "0.0.3"
 __triggers__ = "mm "
 __authors__ = "TheRealLorenz"
 
@@ -20,8 +20,8 @@ def handleQuery(query):
     if query.string.startswith("+"):
         return Item(id=__title__,
                     icon=os.path.dirname(__file__)+"/plus.png",
-                    text="%s" % query.string.split('+')[1].strip(),
-                    subtext="Add item to memo",
+                    text="<b>%s</b>" % query.string.split('+')[1].strip(),
+                    subtext="<i>Add item to memo</i>",
                     actions=[ProcAction(text='Add entry',
                                         commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/add-item' % getuser(), '%s' % query.string.split('+')[1].strip()],
                                         cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/' % getuser()
@@ -30,18 +30,28 @@ def handleQuery(query):
     results = []
     with open('/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/memo.txt' % getuser(), 'a+') as memfile:
         memfile.seek(0)
+        text = '||'
         for line in memfile:
             text = line.split('|')[1].strip()
             date = line.split('|')[0].strip()
             item = Item(id=__title__,
                 icon=os.path.dirname(__file__)+"/note.png", 
                 text=text, 
-                subtext=date
+                subtext="<i>%s</i>" % date
                 )
             item.actions = [ProcAction(text='Remove entry',
                                         commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/rm-item' % getuser(), text],
                                         cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/' % getuser()
                                         )]
+            results.append(item)
+
+        if text == '||':
+            item = Item(
+                    id=__title__,
+                    icon=os.path.dirname(__file__)+"/note.png",
+                    text='<b>Empty tasklist</b>',
+                    subtext="<i>Type </i><b>'+'</b><i> and the task you want to add</i>"
+                    )
             results.append(item)
 
     # Api v 0.2
