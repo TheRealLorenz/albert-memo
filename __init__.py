@@ -23,12 +23,12 @@ def handleQuery(query):
                     text="<b>%s</b>" % query.string.split('+')[1].strip(),
                     subtext="<i>Add item to memo</i>",
                     actions=[ProcAction(text='Add entry',
-                                        commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/add-item' % getuser(), '%s' % query.string.split('+')[1].strip()],
-                                        cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/' % getuser()
+                                        commandline=[os.path.dirname(__file__)+'/add-item', '%s' % query.string.split('+')[1].strip()],
+                                        cwd=os.path.dirname(__file__)
                                         )])
 
     results = []
-    with open('/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/memo.txt' % getuser(), 'a+') as memfile:
+    with open(os.path.dirname(__file__)+'/memo.txt', 'a+') as memfile:
         memfile.seek(0)
         text = '||'
         for line in memfile:
@@ -40,8 +40,8 @@ def handleQuery(query):
                 subtext="<i>%s</i>" % date
                 )
             item.actions = [ProcAction(text='Remove entry',
-                                        commandline=['/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/rm-item' % getuser(), text],
-                                        cwd='/home/%s/.local/share/albert/org.albert.extension.python/modules/albert-memo/' % getuser()
+                                        commandline=[os.path.dirname(__file__)+'/rm-item', text],
+                                        cwd=os.path.dirname(__file__)
                                         )]
             results.append(item)
 
