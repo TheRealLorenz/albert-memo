@@ -1,5 +1,13 @@
 #!/bin/bash
 
-if [ x"${@}" != x"" ]; then
-    echo "$(date | cut -d " " -f2- | cut -d "," -f1)|$(echo ${@} | cut -d "+" -f2)" >> ./memo.txt
+if [ x"${1}" != x"" ]; then
+    if [ x"${2}" == x"today" ]; then
+        echo "$(date | cut -d " " -f2- | cut -d "," -f1)|$(echo ${1} | cut -d "+" -f2)|$(date | cut -d " " -f2- | cut -d "," -f1)" >> ./notes.txt
+    elif [ x"${2}" == x"tomorrow" ]; then
+        echo "$(date | cut -d " " -f2- | cut -d "," -f1)|$(echo ${1} | cut -d "+" -f2)|$(date -d "+1 days" | cut -d " " -f2- | cut -d "," -f1)" >> ./notes.txt
+    elif [ x"${2}" == x"" ]; then
+        echo "$(date | cut -d " " -f2- | cut -d "," -f1)|$(echo ${1} | cut -d "+" -f2)|∞" >> ./notes.txt
+    else
+        echo "$(date | cut -d " " -f2- | cut -d "," -f1)|$(echo ${1} | cut -d "+" -f2)|${2}" >> ./notes.txt
+    fi
 fi

@@ -1,4 +1,4 @@
 #!/bin/bash
 if [ x"${@}" != x"" ]; then
-    sed -i "/${@}/d" ./memo.txt
+    sed -i "/${@}/d" ./notes.txt
 fi
