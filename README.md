@@ -34,7 +34,7 @@ It will have no expire date, just a ∞.
 
 Type 'nt + *SOMETEXT* **x** *SOMEDATE*' to add *SOMETEXT* to the notes with *SOMEDATE* as the expire date.
 
-*SOMEDATE* can be a string in the format *'gg mmm yy'* or even *'today'/'tomorrow'*.
+*SOMEDATE* can be a string in the format *'gg mm yy'* or even *'today'/'tomorrow'*.
 
 **NOTE: expire date is just a reminder, the note won't be canceled after *SOMEDATE*.**
 
